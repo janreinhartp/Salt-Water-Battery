@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Salt Water Baterry Lamp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" type="text/css" href="bootstrap.css">
+</head>
+<body>
+    <div class="container-fluid bg-body">
+        <div class="container">
+            <p class="h1 text-center">Salt Water Battery Lamp</p>
+        </div>
+
+        <div class="container">
+            <p class="h3 text-center">Current Time</p>
+        </div>
+        <div class="container">
+            <p class="h4 text-center" id ="TIME"> %TIME% </p>
+        </div>
+
+        <div class="container">
+            <p class="h4 text-center">The lights is currently Turned Off</p>
+        </div>
+
+        <div class="container text-center">
+            <button type="button" class="btn btn-success">On</button>
+            <button type="button" class="btn btn-danger">Off</button>
+        </div>
+
+
+        <div class="container mt-5">
+            <p class="h4 text-center">Timer</p>
+        </div>
+        <div class="container text-center mt-2">
+            <form action="/get">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Enter Timer on Hours</label>
+                  <input type="text" class="form-control  " id="TIMER" name="TIMER" placeholder="Enter Time">
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </form>
+        </div>
+
+        <div class="container mt-5">
+            <p class="h3 text-center">Current Set Timer</p>
+        </div>
+        <div class="container mt-1">
+            <p class="h4 text-center" id ="STATUS">STATUS: %STATUS%</p>
+        </div>
+        <div class="container">
+            <p class="h4 text-center" id ="COUNTTIMER"> %COUNTTIMER% </p>
+        </div>
+
+        <div class="container text-center mt-5">
+            <button type="button" class="btn btn-success">Start</button>
+            <button type="button" class="btn btn-danger">Stop</button>
+        </div>
+
+    </div>
+</body>
+
+<script  type="text/javascript"src="bootstrap.js"></script>
+
+<script>
+    setInterval(function ( ) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("TIME").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", "/TIME", true);
+      xhttp.send();
+    }, 1000 ) ;
+
+    setInterval(function ( ) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("COUNTTIMER").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", "/COUNTTIMER", true);
+      xhttp.send();
+    }, 1000 ) ;
+</script>
+
+</html>
